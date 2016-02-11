@@ -50,10 +50,8 @@ to do. Configuration can be found in `grails-app\conf\application.groovy`.
 Additionally, the `@Secured` annotation is used on the controller methods, which
 is standard for Grails Spring Security Core.
 
-While this application does not use encrypted JWT, if and when it does, the JWT
-secret will be used. It is currently set to the default value in `application.yml`
-and should be overridden for your own project. See the Grails Security Rest
-plugin documentation for more details.
+To secure the communication between the client app and this web service, just
+use SSL.
 
 ## Usage
 
@@ -79,11 +77,11 @@ URLs that have been made available.
 
 ## TODO
 
-Tests! Functional tests, especially, need to create an encrypted JWT (JSON Web
-Token) containing "admin" credentials, send it to the web service, receive the
-response, confirm authentication, and test successful querying. A similar
-sequence using "guest" credentials should be tested and confirmed with expected
-failure.
+Tests! Functional tests, especially, need to create a simple JSON string
+containing the "admin" username/password pair, send it to the web service,
+receive the response, confirm authentication, and test successful querying. A
+similar sequence using "guest" credentials should be tested and confirmed with
+expected failure.
 
 Furthermore, the application is currently setup with data that is read-only. It
 might be nice to allow for creating and updating of objects; however, this is
@@ -91,8 +89,8 @@ not essential.
 
 ## Miscellaneous
 
-Sample data is loaded from a file during Bootstrap. Sample data was obtained
-from [generatedata.com][6]. Bookmark this site. You're welcome ;-)
+Sample data is loaded from a JSON file during Bootstrap. It was obtained from
+[generatedata.com][6]. Bookmark that site. You're welcome ;-)
 
 [1]: https://grails.org/
 [2]: https://grails.github.io/grails-doc/3.1.x/guide/async.html
