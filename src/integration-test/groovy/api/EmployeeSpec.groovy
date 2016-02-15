@@ -18,17 +18,39 @@ class EmployeeSpec extends GebSpec {
     def cleanup() {
     }
 
-    void "Test the homepage"() {
-        when:"The home page is requested"
-            def resp = restBuilder().get("$baseUrl/")
+    void "Test the login page"() {
+        when: "The login page is requested"
+            def accessToken = authenticate()
 
-        then:"The response is correct"
+        then: "There is an access token"
+            accessToken != null
+    }
+
+    void "Test the count page"() {
+        when: "The count page is requested"
+            def accessToken = authenticate()
+            def resp = restBuilder().post("$baseUrl/api/employees/count") {
+                header(AUTHORIZATION, "Bearer ${accessToken}")
+            }
+
+        then: "The response is correct"
             resp.status == OK.value()
-            resp.headers[CONTENT_TYPE] == ['application/json;charset=UTF-8']
-            resp.json.message == 'Welcome to Grails!'
+            resp.json.count == 100
     }
 
     RestBuilder restBuilder() {
         new RestBuilder()
     }
+
+    String authenticate() {
+        def resp = restBuilder().post("$baseUrl/api/login") {
+            contentType "application/json"
+            json {
+                username = "admin"
+                password = "admin"
+            }
+        }
+        resp.json.access_token
+    }
+
 }
