@@ -2,13 +2,13 @@
 
 ## Description
 
-This is a simple example application that provides a REST API for listing
+This is a simple example application that provides a web service for listing
 and searching for employees in a database. The project has the following
 characterisitcs:
 
 - Grails: uses the [Grails][1] v3.1 framework
 - Asynchronous: uses Grails [asynchronous][2] features
-- RESTful: uses Grails "rest-api" profile to create a [web service][3]
+- Web Service: uses Grails "rest-api" profile to create a [web service][3]
 - Secure: uses Grails Spring Security [Core][4] v3 and [Rest][5] v2 plugins
 
 ## Object Model
